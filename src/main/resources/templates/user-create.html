@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create user</title>
+</head>
+<body>
+<form action="#" th:action="@{/users/create}" th:object="${user}" method="post">
+    <label for="username">First name</label>
+    <input type="text" th:field="*{username}" id="username" placeholder="Username">
+    <label for="email">Last name</label>
+    <input type="text" th:field="*{email}" id="email" placeholder="Email">
+    <input type="submit" value="Create User">
+</form>
+</body>
+</html>
