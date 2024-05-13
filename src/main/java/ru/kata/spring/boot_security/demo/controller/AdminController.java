@@ -31,16 +31,6 @@ public class AdminController {
         return "user-list";
     }
 
-    @GetMapping("/create")
-    public String createUserForm(User user){
-        return "user-create";
-    }
-
-    @PostMapping("/create")
-    public String createUser(User user){
-        userService.save(user);
-        return "redirect:/admin/users";
-    }
 
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id){
