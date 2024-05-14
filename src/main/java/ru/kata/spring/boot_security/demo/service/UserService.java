@@ -18,8 +18,7 @@ import ru.kata.spring.boot_security.demo.repository.UserRepository;
 
 import javax.transaction.Transactional;
 import java.beans.Transient;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,11 +27,14 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository, @Lazy PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, @Lazy PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.roleRepository = roleRepository;
+
     }
 
     public User findByUsername(String username) {
@@ -47,6 +49,9 @@ public class UserService implements UserDetailsService {
     }
     public User save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        Collection<Role> roles = new ArrayList<>();
+        roles.add(roleRepository.getById(2L));
+        user.setRoles(roles);
         return userRepository.save(user);
     }
     public void deleteById(Long id) {
