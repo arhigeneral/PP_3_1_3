@@ -28,8 +28,8 @@
             </tbody>
         </table>
     </div>
-    <form action="/logout" method="post">
-        <input type="submit" value="Sign Out">
+    <form th:action="@{/logout}" th:method="POST">
+        <button type="submit">Logout</button>
     </form>
 </div>
 </body>

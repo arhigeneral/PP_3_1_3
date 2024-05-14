@@ -24,8 +24,12 @@
                 <td th:text="${user.email}"></td>
             </tr>
             </tbody>
+
         </table>
     </div>
 </div>
+<form th:action="@{/logout}" th:method="POST">
+    <button type="submit">Logout</button>
+</form>
 </body>
 </html>
